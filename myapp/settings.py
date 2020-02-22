@@ -23,9 +23,9 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1', '.herokuapp.com']
+
 ALLOWED_HOSTS = ['*']
 
 
@@ -51,7 +51,6 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
 
 ROOT_URLCONF = 'myapp.urls'
@@ -83,7 +82,7 @@ DATABASES = {
     'default': {
         #'ENGINE': 'django.db.backends.sqlite3',
         #'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-        'ENGINE': 'django.db.postgresql_psycopg2',
+        'ENGINE': 'django.db.backends.mysql',
         'NAME': 'mealmapdb',
         'USER': 'root',
         'PASSWORD': '',
@@ -131,21 +130,6 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-try:
-    from .local_settings import *
-except ImportError:
-    pass
-
-if not DEBUG:
-    SECRET_KEY = os.environ['g*k*&9-gi%e=s#qx!40ew-vef62vegi)!hq62qs_!(n72!)a^e']
-    import django_heroku 
-    django_heroku.settings(locals()) 
-    
-    
-db_from_env = dj_database_url.config(conn_max_age=600, ssl_require=True)
-DATABASES['default'].update(db_from_env)    
-
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-
+SECRET_KEY='g*k*&9-gi%e=s#qx!40ew-vef62vegi)!hq62qs_!(n72!)a^e'
 
 
