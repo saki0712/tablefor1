@@ -1,1 +1,1 @@
-web: gunicorn tableforone.wsgi --log-file -
+web: gunicorn myapp.wsgi --log-file -
