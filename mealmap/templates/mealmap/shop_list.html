@@ -14,8 +14,10 @@
             </tr>
         {% endfor %}
     </table>
-    <div>
-    <a href='{% url "mealmap:create" %}'>新しいお店</a>
-    </div>
-
+    {% if user.is_authenticated %}
+        <div>
+            <a href='{% url "mealmap:create" %}'>新しいお店</a>
+            <a href='{% url "mealmap:category_create" %}'>新しいカテゴリー</a>
+        </div>    
+    {% endif %}    
 {% endblock %}

@@ -6,7 +6,8 @@
     {% if form.errors %}
         <p class='error-msg'>Your username and password didn't match. Please try again.</p>
     {% endif %}
-
+    
+    <!-- アクセス権限に関するエラーメッセージを表示 -->
     {% if next %}
         {% if user.is_authenticated %}
             <p class='error-msg'>Your account doesn't have access to this page. To proceed,
@@ -19,7 +20,7 @@
     <form action='{% url "login" %}' method='post'>
         {% csrf_token %}
         <input type='hidden' name='next' value='{{ next }}'/>
-        {{ form.as_p }}
+        {{ form.as_p }}　<!-- 汎用ビューで用意した項目を自動的にフォームとして表示 -->
         <button type='submit'>Login</button>
     </form>
 </section>

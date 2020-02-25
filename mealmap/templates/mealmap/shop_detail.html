@@ -14,7 +14,9 @@
     </iframe>
     <div>
         <a href='{% url "mealmap:index" %}'>一覧</a>
-        <a href='{% url "mealmap:update" shop.pk %}'>編集</a>
-        <a href='{% url "mealmap:delete" shop.pk %}'>削除</a>
+        {% if request.user.id == object.author_id %}
+            <a href='{% url "mealmap:update" shop.pk %}'>編集</a>
+            <a href='{% url "mealmap:delete" shop.pk %}'>削除</a>
+        {% endif %}    
     </div>
 {% endblock %}
