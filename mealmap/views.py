@@ -39,5 +39,11 @@ class DeleteView(LoginRequiredMixin, generic.edit.DeleteView):
 class CategoryCreateView(LoginRequiredMixin, generic.edit.CreateView): 
     model = Category
     template_name = 'mealmap/category_form.html'
-    fields = ['name', 'author']
-    success_url = reverse_lazy('mealmap:index')    
+    fields = ['name']
+    success_url = reverse_lazy('mealmap:index') 
+    
+    def form_valid(self, form):
+        form.instance.author = self.request.user
+        return super(CategoryCreateView, self).form_valid(form)
+        
+        
