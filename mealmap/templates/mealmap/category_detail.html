@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+{% extends 'layout.html' %}
+{% block content %}
+    <h1>お店
+        <table class='table table-hover'>
+        {% for shop in object_list %}
+            <tr>
+                <td><a href='{% url "mealmap:detail" shop.pk %}'>{{ shop.name }}</a></td>
+            </tr>
+        {% endfor %}
+    </table>
+    </h1>
+    <div>
+        <a href='{% url "mealmap:category_index" %}'>カテゴリー一覧</a>
+    </div>
+{% endblock %}

@@ -10,7 +10,7 @@
     <body>
         <nav class='navbar navbar-expand-sm navbar-dark bg-warning fixed-top'>
             <a class='navbar-brand' href='{% url "mealmap:index" %}'>ひとりでレストラン</a>
-            <ul class='navbar-nav'>
+            <ul class='navbar-nav mr-auto'>
                 {% if user.is_authenticated %}
                     <li class='nav-item'>
                         <span class="navbar-text">{{ user }} - </span>
@@ -27,6 +27,9 @@
                     </li>
                 {% endif %}
             </ul>
+            <ul class="navbar-nav">
+                <a class='navbar-brand' href='{% url "mealmap:category_index" %}'>カテゴリー一覧</a>
+            </ul> 
         </nav>
         <div class='container'>
             <h1>おひとりさま向けのレストラン</h1>

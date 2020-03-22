@@ -7,9 +7,22 @@ from django.core.exceptions import PermissionDenied
 class IndexView(generic.ListView):
     model = Shop
     
+class CategoryIndexView(generic.ListView):
+    model = Category
+    template_name = 'mealmap/category_list.html'
+    fields = ['name']
+    
 class DetailView(generic.DetailView):
     model = Shop
     
+class CategoryTemplateView(generic.TemplateView):
+    model = Category
+    template_name = 'mealmap/category_detail.html'
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['object_list'] = Shop.objects.filter(category_id=self.kwargs['pk'])
+        return context
+        
 class UpdateView(LoginRequiredMixin, generic.edit.UpdateView):
     model = Shop
     fields = ['name', 'address', 'category']
