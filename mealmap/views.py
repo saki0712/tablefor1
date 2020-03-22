@@ -15,7 +15,7 @@ class CategoryIndexView(generic.ListView):
 class DetailView(generic.DetailView):
     model = Shop
     
-class CategoryTemplateView(generic.TemplateView):
+class CategoryDetailView(generic.DetailView):
     model = Category
     template_name = 'mealmap/category_detail.html'
     def get_context_data(self, **kwargs):
